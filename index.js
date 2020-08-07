@@ -15,7 +15,7 @@ async function getChars() {
     .then((chars) => (arrayOfChars = chars.data.results))
   displayStuff()
 }
-
+// display styled api content
 const displayStuff = function () {
   clearChildren()
   arrayOfChars.forEach((character) => {
