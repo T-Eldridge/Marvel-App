@@ -1,6 +1,10 @@
+// const dotenv = require('dotenv')
+// dotenv.config()
+// const api_key = process.env.API_KEY
+
 let arrayOfChars
 let addedParam = ""
-let initialResults = `http://gateway.marvel.com/v1/public/characters?ts=1&apikey=${dotenv}&limit=100&nameStartsWith=`
+let initialResults = `http://gateway.marvel.com/v1/public/characters?ts=1&apikey=${api_key}&limit=100&nameStartsWith=`
 const captureInput = (input) => {
   addedParam = input
 }
@@ -14,7 +18,7 @@ async function getChars() {
     .then((res) => res.json())
     .then((chars) => (arrayOfChars = chars.data.results))
   displayStuff()
-}
+} 
 // display styled api content
 const displayStuff = function () {
   clearChildren()
@@ -89,8 +93,8 @@ const displayStuff = function () {
 
 // clears results
 const clearChildren = () => {
-  let poop = document.getElementById("fetch-body")
-  while (poop.firstChild) {
-    poop.removeChild(poop.firstChild)
+  let element = document.getElementById("fetch-body")
+  while (element.firstChild) {
+    element.removeChild(element.firstChild)
   }
 }
