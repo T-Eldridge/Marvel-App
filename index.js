@@ -1,16 +1,19 @@
 // const dotenv = require('dotenv')
 // dotenv.config()
 // const api_key = process.env.API_KEY
-
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0)
+}
 let arrayOfChars
 let addedParam = ""
-let initialResults = `http://gateway.marvel.com/v1/public/characters?ts=1&apikey=${api_key}&limit=100&nameStartsWith=`
+const initialResults = `http://gateway.marvel.com/v1/public/characters?ts=1&apikey=${api_key}&limit=100&nameStartsWith=`
 const captureInput = (input) => {
   addedParam = input
 }
 const allPosts = document.getElementById("fetch-body")
 window.onload = function () {
   getChars()
+  document.body.style.overflow = "hidden"
   // setTimeout(displayStuff, 2000)
 }
 async function getChars() {
@@ -18,9 +21,10 @@ async function getChars() {
     .then((res) => res.json())
     .then((chars) => (arrayOfChars = chars.data.results))
   displayStuff()
-} 
+}
 // display styled api content
 const displayStuff = function () {
+  document.body.style.overflow = "scroll"
   clearChildren()
   arrayOfChars.forEach((character) => {
     const li = document.createElement("LI")
@@ -72,12 +76,12 @@ const displayStuff = function () {
     li.style.listStyleType = "none"
   })
 
-  let tooltip = document.querySelectorAll(".tooltiptext")
+  const tooltip = document.querySelectorAll(".tooltiptext")
   document.addEventListener("mousemove", fn, false)
   function fn(e) {
     for (let i = tooltip.length; i--; ) {
-      tooltip[i].style.left = e.pageX + "px"
-      tooltip[i].style.top = e.pageY + "px"
+      tooltip[i].style.left = `${e.pageX}px`
+      tooltip[i].style.top = `${e.pageY}px`
     }
   }
 
@@ -93,7 +97,7 @@ const displayStuff = function () {
 
 // clears results
 const clearChildren = () => {
-  let element = document.getElementById("fetch-body")
+  const element = document.getElementById("fetch-body")
   while (element.firstChild) {
     element.removeChild(element.firstChild)
   }

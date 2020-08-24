@@ -28,7 +28,7 @@ body {
   margin: auto;
   font-family: 'Frijole', cursive;
   font-size 25px;
-  overflow: auto;
+  /* overflow: hidden; */
 }
 
 h3 {
